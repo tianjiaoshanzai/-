@@ -16,9 +16,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-/**
- * Created by nowcoder on 2016/7/2.
- */
+
 @Controller
 public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -59,11 +57,12 @@ public class LoginController {
 
     @RequestMapping(path = {"/reglogin"}, method = {RequestMethod.GET})
     public String regloginPage(Model model, @RequestParam(value = "next", required = false) String next) {
+
         model.addAttribute("next", next);
         return "login";
     }
 
-    /*
+
     @RequestMapping(path = {"/login/"}, method = {RequestMethod.POST})
     public String login(Model model, @RequestParam("username") String username,
                         @RequestParam("password") String password,
@@ -100,6 +99,6 @@ public class LoginController {
         return "redirect:/";
     }
 
-     */
+
 
 }
