@@ -19,7 +19,7 @@ public class ChuangweiWebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(passportInterceptor);
-        //registry.addInterceptor(loginRequiredInterceptor).addPathPatterns("/user/*");
+        registry.addInterceptor(loginRequiredInterceptor).addPathPatterns("/user/*");//访问user/*时使用拦截器
         super.addInterceptors(registry);
     }
 }
