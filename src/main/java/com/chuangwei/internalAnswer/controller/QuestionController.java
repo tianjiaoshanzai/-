@@ -1,8 +1,7 @@
 package com.chuangwei.internalAnswer.controller;
 
-import com.chuangwei.internalAnswer.model.HostHolder;
-import com.chuangwei.internalAnswer.model.Question;
-import com.chuangwei.internalAnswer.model.ViewObject;
+import com.chuangwei.internalAnswer.model.*;
+import com.chuangwei.internalAnswer.service.CommentService;
 import com.chuangwei.internalAnswer.service.QuestionService;
 import com.chuangwei.internalAnswer.service.UserService;
 import com.chuangwei.internalAnswer.util.InternalAnswerUtil;
@@ -25,8 +24,8 @@ public class QuestionController {
     @Autowired
     QuestionService questionService;
 
-    //@Autowired
-    //CommentService commentService;
+    @Autowired
+    CommentService commentService;
 
     @Autowired
     HostHolder hostHolder;//拦截器
@@ -34,7 +33,7 @@ public class QuestionController {
     @Autowired
     UserService userService;
 
-    /*@RequestMapping(value = "/question/{qid}", method = {RequestMethod.GET})
+    @RequestMapping(value = "/question/{qid}", method = {RequestMethod.GET})
     public String questionDetail(Model model, @PathVariable("qid") int qid) {
         Question question = questionService.getById(qid);
         model.addAttribute("question", question);
@@ -49,7 +48,7 @@ public class QuestionController {
         model.addAttribute("comments", vos);
 
         return "detail";
-    }*/
+    }
 
     @RequestMapping(value = "/question/add", method = {RequestMethod.POST})
     @ResponseBody

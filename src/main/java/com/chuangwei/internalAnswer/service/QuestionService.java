@@ -15,20 +15,16 @@ public class QuestionService {
     @Autowired
     QuestionDAO questionDAO;
 
-    /*@Autowired
-    SensitiveService sensitiveService;*/
+    @Autowired
+    SensitiveService sensitiveService;
 
-
-    /*public Question getById(int id) {
-        return questionDAO.getById(id);
-    }*/
 
     public int addQuestion(Question question) {
         question.setTitle(HtmlUtils.htmlEscape(question.getTitle()));
         question.setContent(HtmlUtils.htmlEscape(question.getContent()));//过滤，转义html，渲染时自动转回，令其变得安全
         // 敏感词过滤
-//        question.setTitle(sensitiveService.filter(question.getTitle()));
-//        question.setContent(sensitiveService.filter(question.getContent()));
+        question.setTitle(sensitiveService.filter(question.getTitle()));
+        question.setContent(sensitiveService.filter(question.getContent()));
 
         return questionDAO.addQuestion(question) > 0 ? question.getId() : 0;
     }
@@ -37,7 +33,11 @@ public class QuestionService {
         return questionDAO.selectLatestQuestions(userId, offset, limit);
     }
 
-    /*public int updateCommentCount(int id, int count) {
+    public Question getById(int qid) {
+        return questionDAO.getById(qid);
+    }
+
+    public int updateCommentCount(int id, int count) {
         return questionDAO.updateCommentCount(id, count);
-    }*/
+    }
 }

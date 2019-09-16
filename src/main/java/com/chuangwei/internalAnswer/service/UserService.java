@@ -106,4 +106,11 @@ public class UserService {
     public void logout(String ticket) {
         loginTicketDAO.updateStatus(ticket, 1);
     }
+
+    public User selectByName(String toName) {
+        /*User user=new User();
+        user=userDAO.selectByName(toName);
+        return user;*/
+        return  userDAO.selectByName(toName);
+    }
 }
