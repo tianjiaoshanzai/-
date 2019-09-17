@@ -130,7 +130,7 @@ public class SensitiveService implements InitializingBean {
             }
         }
 
-        result.append(text.substring(begin));
+        result.append(text.substring(begin));//剩余内容录入
 
         return result.toString();
     }
@@ -146,7 +146,7 @@ public class SensitiveService implements InitializingBean {
             }
             TrieNode node = tempNode.getSubNode(c);
 
-            if (node == null) { // 没初始化
+            if (node == null) { // 没找到c对应节点就初始化
                 node = new TrieNode();
                 tempNode.addSubNode(c, node);
             }

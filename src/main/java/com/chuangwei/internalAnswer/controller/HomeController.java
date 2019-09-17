@@ -3,6 +3,7 @@ package com.chuangwei.internalAnswer.controller;
 import com.chuangwei.internalAnswer.model.Question;
 import com.chuangwei.internalAnswer.model.ViewObject;
 import com.chuangwei.internalAnswer.service.QuestionService;
+import com.chuangwei.internalAnswer.service.SensitiveService;
 import com.chuangwei.internalAnswer.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,10 +29,16 @@ public class HomeController {
     @Autowired
     UserService userService;
 
+    /*@Autowired
+    SensitiveService sensitiveService;*/
+
     private List<ViewObject> getQuestions(int userId, int offset, int limit) {
         List<Question> questionList = questionService.getLatestQuestions(userId, offset, limit);
         List<ViewObject> vos = new ArrayList<>();
         for (Question question : questionList) {
+            //可加入敏感词过滤  保证用户数据不失真
+            /*question.setTitle(sensitiveService.filter(question.getTitle()));
+            question.setContent(sensitiveService.filter(question.getContent()));*/
             ViewObject vo = new ViewObject();
             vo.set("question", question);
             vo.set("user", userService.getUser(question.getUserId()));
