@@ -19,7 +19,14 @@ public class LoginRequiredInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         if (hostHolder.getUser() == null) {
-            httpServletResponse.sendRedirect("/reglogin?next=" + httpServletRequest.getRequestURI());
+            String s=httpServletRequest.getRequestURI();
+           //System.out.println(s);
+            /*String queryString = httpServletRequest.getQueryString();
+            String s1=s;*/
+//            httpServletResponse.sendRedirect("/reglogin?next=" + httpServletRequest.getRequestURI()
+//                    +"&queryString="+ queryString);
+            httpServletRequest.setAttribute("next",httpServletRequest.getRequestURI());
+            httpServletRequest.getRequestDispatcher("/reglogin").forward(httpServletRequest,httpServletResponse);
             return false;
         }
         return true;

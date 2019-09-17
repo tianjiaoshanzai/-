@@ -1,6 +1,7 @@
 package com.chuangwei.internalAnswer.controller;
 
 import com.chuangwei.internalAnswer.service.UserService;
+import com.sun.deploy.net.HttpResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
@@ -56,9 +58,15 @@ public class LoginController {
     }
 
     @RequestMapping(path = {"/reglogin"}, method = {RequestMethod.GET})
-    public String regloginPage(Model model, @RequestParam(value = "next", required = false) String next) {
-
-        model.addAttribute("next", next);
+    public String regloginPage(Model model, HttpServletRequest request, HttpServletResponse response /*@RequestParam(value = "next", required = false) String next*/) {
+        String queryString = request.getQueryString();
+        String next = (String)request.getAttribute("next");
+        if (next != null) {
+            if (queryString != null) {
+                next = next + "?" + queryString;
+            }
+            model.addAttribute("next", next);
+        }
         return "login";
     }
 
