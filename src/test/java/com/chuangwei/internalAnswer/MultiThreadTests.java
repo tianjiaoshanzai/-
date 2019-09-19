@@ -3,9 +3,7 @@ package com.chuangwei.internalAnswer;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Created by nowcoder on 2016/7/24.
- */
+
 class MyThread extends Thread {
     private int tid;
 
@@ -276,7 +274,7 @@ public class MultiThreadTests {
             e.printStackTrace();
         }
     }
-    public static void main(String[] argv) {
+    /*public static void main(String[] argv) {
         //testThread();
         //testSynchronized();
         //testBlockingQueue();
@@ -284,5 +282,5 @@ public class MultiThreadTests {
         //testExecutor();
         //testAtomic();
         testFuture();
-    }
+    }*/
 }

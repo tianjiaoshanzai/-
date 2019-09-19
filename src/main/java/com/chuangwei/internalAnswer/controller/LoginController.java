@@ -1,7 +1,7 @@
 package com.chuangwei.internalAnswer.controller;
 
 import com.chuangwei.internalAnswer.service.UserService;
-import com.sun.deploy.net.HttpResponse;
+//import com.sun.deploy.net.HttpResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +59,7 @@ public class LoginController {
 
     @RequestMapping(path = {"/reglogin"}, method = {RequestMethod.GET})
     public String regloginPage(Model model, HttpServletRequest request, HttpServletResponse response /*@RequestParam(value = "next", required = false) String next*/) {
-        String queryString = request.getQueryString();
+        String queryString = request.getQueryString();//拼接next重定向
         String next = (String)request.getAttribute("next");
         if (next != null) {
             if (queryString != null) {
@@ -67,6 +67,8 @@ public class LoginController {
             }
             model.addAttribute("next", next);
         }
+
+
         return "login";
     }
 

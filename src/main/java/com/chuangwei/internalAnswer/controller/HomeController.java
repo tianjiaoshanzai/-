@@ -36,7 +36,7 @@ public class HomeController {
         List<Question> questionList = questionService.getLatestQuestions(userId, offset, limit);
         List<ViewObject> vos = new ArrayList<>();
         for (Question question : questionList) {
-            //可加入敏感词过滤  保证用户数据不失真
+            //可取代性在此加入敏感词过滤  保证用户数据不失真
             /*question.setTitle(sensitiveService.filter(question.getTitle()));
             question.setContent(sensitiveService.filter(question.getContent()));*/
             ViewObject vo = new ViewObject();

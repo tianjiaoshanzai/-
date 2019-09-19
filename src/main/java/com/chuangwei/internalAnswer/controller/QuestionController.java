@@ -28,7 +28,7 @@ public class QuestionController {
     CommentService commentService;
 
     @Autowired
-    HostHolder hostHolder;//拦截器
+    HostHolder hostHolder;//拦截器造出全局
 
     @Autowired
     UserService userService;
